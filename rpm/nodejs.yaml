@@ -1,0 +1,62 @@
+Name: nodejs
+Summary: Evented I/O for V8 JavaScript
+Version: 0.0.0
+Release: 0
+Group: Development/Languages
+License: MIT
+URL: http://www.nodejs.org
+Sources:
+- '%{name}-%{version}.tar.gz'
+Description: |
+  Provides an easy way to build scalable network programs
+  http://nodejs.org
+PkgBR:
+- curl
+- gcc-c++
+- procps
+- pkgconfig
+- python
+PkgConfigBR:
+- zlib
+Provides:
+- npm = %{version}
+Configure: none
+Builder: make
+Files:
+- '%{_bindir}/node'
+- '%{_libdir}/node_modules'
+- '%{_datadir}/systemtap'
+SubPackages:
+- Name: devel
+  Summary: Devel
+  Group: Development/Languages
+  Description: |
+    Provides an easy way to build scalable network programs
+    http://nodejs.org
+    This package provides developement headers
+  Files:
+  - '%{_includedir}/node'
+- Name: npm
+  Summary: Node package manager
+  Group: Development/Languages
+  Description: |
+    Provides an easy way to build scalable network programs
+    http://nodejs.org
+    This package provides npm
+  Files:
+  - '%attr(755,root,root) %{_bindir}/npm'
+  - '%exclude %{_libdir}/node_modules/npm/.npmignore'
+  - '%exclude %{_libdir}/node_modules/npm/scripts/clean-old.sh'
+  - '%exclude %{_libdir}/node_modules/npm/scripts/install.sh'
+  - '%attr(755,root,root) %{_libdir}/node_modules/npm/scripts/clean-old.sh'
+  - '%attr(755,root,root) %{_libdir}/node_modules/npm/scripts/install.sh'
+- Name: doc
+  Summary: Doc
+  Group: Development/Languages
+  Description: |
+    Provides an easy way to build scalable network programs
+    http://nodejs.org
+    This package provides documentation
+  Files:
+  - '%{_mandir}/*/*'
+  - '%doc AUTHORS LICENSE'
